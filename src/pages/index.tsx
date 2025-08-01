@@ -55,8 +55,9 @@ export default function Home() {
             <h2 className="text-xl font-bold text-center w-full text-foreground bg-blend-difference">
               {items[currentItem].title}
             </h2>
-            <div
+            <Link
               className="aspect-square size-[80vmin] max-w-[40rem]  bg-blend-difference"
+              href={items[currentItem].id}
               style={{ backgroundColor: items[currentItem].hex }}
             />
             <div className="h-4 border border-foreground w-[80vmin] flex relative max-w-[40rem]">
