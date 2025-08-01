@@ -44,10 +44,6 @@ export default function Home() {
   return (
     <div className={`${libreBodoni.className} font-sans`}>
       <main className="flex flex-col items-center" ref={ref}>
-        <motion.div
-          style={{ scale: scrollYProgress }}
-          className="bg-blue-500 size-8 rounded-full fixed top-4 left-4 z-50"
-        />
         <section className="fixed inset-0 h-lvh">
           <div className="px-8 flex flex-col items-center justify-center gap-4 size-full">
             <h2 className="text-xl font-bold text-center w-full text-white bg-blend-difference">
