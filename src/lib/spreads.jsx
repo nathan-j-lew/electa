@@ -9,7 +9,7 @@ export function getSortedSpreadsData() {
   const fileNames = fs.readdirSync(spreadsDirectory);
   const allSpreadsData = fileNames.map((fileName) => {
     // Remove ".mdx" from file name to get id
-    const id = fileName.replace(/\.mdx$/, '');
+    const slug = fileName.replace(/\.mdx$/, '');
 
     // Read markdown file as string
     const fullPath = path.join(spreadsDirectory, fileName);
@@ -18,15 +18,15 @@ export function getSortedSpreadsData() {
     // Use gray-matter to parse the post metadata section
     const matterResult = matter(fileContents);
 
-    // Combine the data with the id
+    // Combine the data with the slug
     return {
-      id,
+      slug,
       ...matterResult.data,
     };
   });
   // Sort spreads by order
   return allSpreadsData.sort((a, b) => {
-    if (a.order < b.order) {
+    if (a.order > b.order) {
       return 1;
     } else {
       return -1;
