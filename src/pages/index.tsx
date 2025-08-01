@@ -33,11 +33,13 @@ export default function Home({
             <h2 className="text-xl font-bold text-center w-full text-foreground bg-blend-difference">
               {data[currentItem].title}
             </h2>
-            <Link
-              className="aspect-square size-[80vmin] max-w-[40rem]  bg-blend-difference"
-              href={data[currentItem].slug}
-              style={{ backgroundColor: data[currentItem].hex }}
-            />
+            <Link href={data[currentItem].slug}>
+              <motion.span
+                className="block aspect-square size-[80vmin] max-w-[40rem] bg-blend-difference"
+                style={{ backgroundColor: data[currentItem].hex }}
+                layoutId="test"
+              />
+            </Link>
             <div className="h-4 border border-foreground w-[80vmin] flex relative max-w-[40rem]">
               {data.map((_, j) => (
                 <Link

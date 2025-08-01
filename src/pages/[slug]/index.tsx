@@ -10,11 +10,26 @@ const libreBodoni = Libre_Bodoni({
   subsets: ["latin"],
 });
 
-export default function Page() {
+export default function Page({
+  spreadData,
+}: {
+  spreadData: {
+    title: string;
+    hex: string;
+    slug: string;
+  };
+}) {
+  console.log("spreadData", spreadData.title);
   return (
     <div className={`${libreBodoni.className} font-sans`}>
       <main className="flex flex-col items-center">
-        <h2 className="text-xl font-bold">A hidden page</h2>
+        <motion.div
+          layoutId="test"
+          style={{ backgroundColor: spreadData.hex }}
+          className="fixed inset-0 -z-1"
+        />
+        <h2 className="text-xl font-bold">{spreadData.title}</h2>
+        <Link href="/">Back to home</Link>
       </main>
     </div>
   );
