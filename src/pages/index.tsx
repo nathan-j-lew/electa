@@ -52,7 +52,7 @@ export default function Home() {
       <main className="flex flex-col items-center" ref={ref}>
         <section className="fixed inset-x-0 top-0 h-svh">
           <div className="px-8 flex flex-col items-center justify-center gap-4 size-full">
-            <h2 className="text-xl font-bold text-center w-full text-white bg-blend-difference">
+            <h2 className="text-xl font-bold text-center w-full text-foreground bg-blend-difference">
               {items[currentItem].title}
             </h2>
             <div
