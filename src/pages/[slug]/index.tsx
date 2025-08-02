@@ -22,15 +22,31 @@ export default function Page({
   console.log("spreadData", spreadData.title);
   return (
     <div className={`${libreBodoni.className} font-sans`}>
-      <main className="flex flex-col items-center">
+      <motion.main className="flex flex-col items-center relative">
         <motion.div
-          layoutId="test"
-          style={{ backgroundColor: spreadData.hex }}
-          className="fixed inset-0 -z-1"
-        />
-        <h2 className="text-xl font-bold">{spreadData.title}</h2>
-        <Link href="/">Back to home</Link>
-      </main>
+          className="fixed inset-x-0 top-0 h-svh -z-1 origin-top"
+          layoutRoot
+          layout
+        >
+          <motion.div
+            layoutId="test"
+            className="size-full"
+            style={{ backgroundColor: spreadData.hex }}
+          />
+        </motion.div>
+        <motion.div
+          className="w-full flex items-center justify-center"
+          layoutId="title"
+          layout="position"
+        >
+          <motion.h2 className="text-xl text-center font-bold">
+            {spreadData.title}
+          </motion.h2>
+        </motion.div>
+        <Link href="/" className="mix-blend-difference">
+          Back to home
+        </Link>
+      </motion.main>
     </div>
   );
 }
