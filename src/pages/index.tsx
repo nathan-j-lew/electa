@@ -15,7 +15,6 @@ export default function Home({
 }: {
   data: { title: string; hex: string; slug: string }[];
 }) {
-  const ref = useRef(null);
   const { scrollYProgress } = useScroll();
   const [currentItem, setCurrentItem] = useState(0);
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
@@ -27,13 +26,28 @@ export default function Home({
 
   return (
     <div className={`${libreBodoni.className} font-sans`}>
-      <main className="flex flex-col items-center" ref={ref}>
-        <section className="fixed inset-x-0 top-0 h-svh">
+      <motion.main className="flex flex-col items-center relative">
+        <motion.section
+          className="fixed inset-x-0 top-0 h-svh"
+          layoutRoot
+          layout
+        >
           <div className="px-8 flex flex-col items-center justify-center gap-4 size-full">
-            <h2 className="text-xl font-bold text-center w-full text-foreground bg-blend-difference">
-              {data[currentItem].title}
-            </h2>
-            <Link href={data[currentItem].slug}>
+            <motion.div
+              className="w-full flex items-center justify-center"
+              layoutId="title"
+              layout="position"
+            >
+              <motion.h2 className="text-xl font-bold text-center text-foreground ">
+                {data[currentItem].title}
+              </motion.h2>
+            </motion.div>
+            <Link
+              href={data[currentItem].slug}
+              onClick={() => {
+                window.scroll(0, 0);
+              }}
+            >
               <motion.span
                 className="block aspect-square size-[80vmin] max-w-[40rem] max-h-[40rem] bg-blend-difference"
                 style={{ backgroundColor: data[currentItem].hex }}
@@ -56,7 +70,7 @@ export default function Home({
               />
             </div>
           </div>
-        </section>
+        </motion.section>
         {data.map((item, i) => (
           <section
             key={`section--${i}`}
@@ -64,7 +78,7 @@ export default function Home({
             id={item.slug}
           />
         ))}
-      </main>
+      </motion.main>
     </div>
   );
 }
