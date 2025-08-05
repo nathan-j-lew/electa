@@ -42,12 +42,7 @@ export default function Home({
                 {data[currentItem].title}
               </motion.h2>
             </motion.div>
-            <Link
-              href={data[currentItem].slug}
-              onClick={() => {
-                window.scroll(0, 0);
-              }}
-            >
+            <Link href={data[currentItem].slug}>
               <motion.span
                 className="block aspect-square size-[80vmin] max-w-[40rem] max-h-[40rem] bg-blend-difference"
                 style={{ backgroundColor: data[currentItem].hex }}
