@@ -29,11 +29,12 @@ export default function Home({
       <motion.main className="flex flex-col items-center relative">
         <motion.section
           className="fixed inset-x-0 top-0 h-svh"
-          layoutRoot
           layout
+          layoutRoot
+          layoutScroll
         >
           <div className="px-8 flex flex-col items-center justify-center gap-4 size-full">
-            <motion.div
+            {/* <motion.div
               className="w-full flex items-center justify-center"
               layoutId="title"
               layout="position"
@@ -41,15 +42,16 @@ export default function Home({
               <motion.h2 className="text-xl font-bold text-center text-foreground ">
                 {data[currentItem].title}
               </motion.h2>
-            </motion.div>
+            </motion.div> */}
             <Link href={data[currentItem].slug}>
               <motion.span
                 className="block aspect-square size-[80vmin] max-w-[40rem] max-h-[40rem] bg-blend-difference"
                 style={{ backgroundColor: data[currentItem].hex }}
                 layoutId="test"
+                key="test"
               />
             </Link>
-            <div className="h-4 border border-foreground w-[80vmin] flex relative max-w-[40rem]">
+            {/* <div className="h-4 border border-foreground w-[80vmin] flex relative max-w-[40rem]">
               {data.map((_, j) => (
                 <Link
                   key={`item-${j}`}
@@ -63,7 +65,7 @@ export default function Home({
                 className={`bg-foreground absolute h-full w-1/5`}
                 style={{ x: currentItem * 100 + "%" }}
               />
-            </div>
+            </div> */}
           </div>
         </motion.section>
         {data.map((item, i) => (

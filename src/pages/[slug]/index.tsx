@@ -24,17 +24,24 @@ export default function Page({
     <div className={`${libreBodoni.className} font-sans`}>
       <motion.main className="flex flex-col items-center relative">
         <motion.div
-          className="fixed inset-x-0 top-0 h-svh -z-1 origin-top"
-          layoutRoot
+          className="fixed inset-x-0 top-0 h-svh -z-1"
           layout
+          layoutRoot
+          layoutScroll
+          // layoutId="testWrapper"
         >
           <motion.div
             layoutId="test"
+            key="test"
             className="size-full"
-            style={{ backgroundColor: spreadData.hex }}
+            style={{
+              backgroundColor: spreadData.hex,
+              originX: 0,
+              originY: 0,
+            }}
           />
         </motion.div>
-        <motion.div
+        {/* <motion.div
           className="w-full flex items-center justify-center"
           layoutId="title"
           layout="position"
@@ -42,7 +49,7 @@ export default function Page({
           <motion.h2 className="text-xl text-center font-bold">
             {spreadData.title}
           </motion.h2>
-        </motion.div>
+        </motion.div> */}
         <Link href="/" className="mix-blend-difference">
           Back to home
         </Link>
