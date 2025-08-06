@@ -24,35 +24,39 @@ export default function Page({
     <div className={`${libreBodoni.className} font-sans`}>
       <motion.main className="flex flex-col items-center relative">
         <motion.div
-          className="fixed inset-x-0 top-0 h-svh -z-1"
+          className="fixed inset-x-0 h-svh -z-1"
           layout
-          layoutRoot
-          layoutScroll
+          // layoutRoot
+          // layoutScroll
           // layoutId="testWrapper"
-        >
-          <motion.div
-            layoutId="test"
-            key="test"
-            className="size-full"
-            style={{
-              backgroundColor: spreadData.hex,
-              originX: 0,
-              originY: 0,
-            }}
-          />
-        </motion.div>
-        {/* <motion.div
-          className="w-full flex items-center justify-center"
+          layoutId="background"
+          style={{
+            backgroundColor: spreadData.hex,
+          }}
+        />
+        <motion.div
+          className="w-full flex items-center justify-center "
           layoutId="title"
           layout="position"
         >
-          <motion.h2 className="text-xl text-center font-bold">
+          <motion.h2
+            className="text-xl font-bold text-center text-foreground"
+            // layoutId="title-text"
+            // layout="position"
+          >
             {spreadData.title}
           </motion.h2>
-        </motion.div> */}
-        <Link href="/" className="mix-blend-difference">
-          Back to home
-        </Link>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed top-8 left-8 z-10 text-foreground text-sm bg-background"
+        >
+          <Link href="/" className="mix-blend-difference">
+            Back to home
+          </Link>
+        </motion.div>
       </motion.main>
     </div>
   );

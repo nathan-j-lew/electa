@@ -20,38 +20,47 @@ export default function Home({
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     // console.log("latest", latest);
     const index = Math.floor(latest * data.length);
+    if (latest < 0.01) return;
     setCurrentItem(index >= data.length ? data.length - 1 : index);
   });
   console.log("data", data);
 
   return (
-    <div className={`${libreBodoni.className} font-sans`}>
+    <div
+      className={`${libreBodoni.className} font-sans scrollbar-gutter-stable`}
+    >
       <motion.main className="flex flex-col items-center relative">
         <motion.section
-          className="fixed inset-x-0 top-0 h-svh"
-          layout
-          layoutRoot
+          className="fixed left-0 top-0 w-full h-screen"
           layoutScroll
         >
-          <div className="px-8 flex flex-col items-center justify-center gap-4 size-full">
-            {/* <motion.div
-              className="w-full flex items-center justify-center"
+          <div className="flex flex-col items-center justify-center gap-4 size-full">
+            <motion.div
+              className="w-full flex items-center justify-center "
               layoutId="title"
               layout="position"
             >
-              <motion.h2 className="text-xl font-bold text-center text-foreground ">
+              <motion.h2
+                className="text-xl font-bold text-center text-foreground"
+                // layoutId="title-text"
+                // layout="position"
+              >
                 {data[currentItem].title}
               </motion.h2>
-            </motion.div> */}
+            </motion.div>
             <Link href={data[currentItem].slug}>
               <motion.span
                 className="block aspect-square size-[80vmin] max-w-[40rem] max-h-[40rem] bg-blend-difference"
                 style={{ backgroundColor: data[currentItem].hex }}
-                layoutId="test"
-                key="test"
+                layoutId="background"
               />
             </Link>
-            {/* <div className="h-4 border border-foreground w-[80vmin] flex relative max-w-[40rem]">
+            <motion.div
+              className="h-4 border border-foreground w-[80vmin] flex relative max-w-[40rem]"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
               {data.map((_, j) => (
                 <Link
                   key={`item-${j}`}
@@ -65,7 +74,7 @@ export default function Home({
                 className={`bg-foreground absolute h-full w-1/5`}
                 style={{ x: currentItem * 100 + "%" }}
               />
-            </div> */}
+            </motion.div>
           </div>
         </motion.section>
         {data.map((item, i) => (
