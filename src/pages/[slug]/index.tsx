@@ -45,13 +45,13 @@ export default function Page({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed top-8 left-8 z-10 text-sm"
+          className="fixed top-8 left-8 z-10 text-lg leading-none"
         >
           <Link
             href="/"
-            className="mix-blend-difference flex items-center space-x-1"
+            className="mix-blend-difference flex items-center gap-x-1 bg-amber-500"
           >
-            <ChevronLeft /> Back to home
+            <ChevronLeft className="fill-foreground size-6" /> Back to home
           </Link>
         </motion.div>
       </motion.main>
