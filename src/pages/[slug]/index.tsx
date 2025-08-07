@@ -5,6 +5,7 @@ import { motion, useMotionValueEvent, useScroll } from "motion/react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { getSpreadData, getSpreadSlugs } from "@/lib/spreads";
+import { ScrollIndicator } from "@/components/scroll/scroll";
 
 const libreBodoni = Libre_Bodoni({
   variable: "--font-libre-bodoni",
@@ -20,6 +21,7 @@ export default function Page({
     slug: string;
   };
 }) {
+  const { scrollYProgress } = useScroll();
   return (
     <div className={`${libreBodoni.className} font-sans`}>
       <motion.main className="flex flex-col items-center relative h-[500lvh]">
@@ -49,11 +51,12 @@ export default function Page({
         >
           <Link
             href="/"
-            className="mix-blend-difference flex items-center gap-x-1 bg-amber-500"
+            className="mix-blend-difference flex items-center gap-x-1"
           >
             <ChevronLeft className="fill-foreground size-6" /> Back to home
           </Link>
         </motion.div>
+        <ScrollIndicator scrollYProgress={scrollYProgress} />
       </motion.main>
     </div>
   );
