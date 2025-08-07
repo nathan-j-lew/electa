@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Libre_Bodoni } from "next/font/google";
+import ChevronLeft from "@/assets/icons/chevron-left.svg";
 import { motion, useMotionValueEvent, useScroll } from "motion/react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
@@ -19,13 +20,13 @@ export default function Page({
     slug: string;
   };
 }) {
-  console.log("spreadData", spreadData.title);
   return (
     <div className={`${libreBodoni.className} font-sans`}>
-      <motion.main className="flex flex-col items-center relative">
+      <motion.main className="flex flex-col items-center relative h-[500lvh]">
         <motion.div
           className="fixed inset-x-0 h-svh -z-1"
           layout
+          layoutScroll
           layoutId="background"
           style={{
             backgroundColor: spreadData.hex,
@@ -36,11 +37,7 @@ export default function Page({
           layoutId="title"
           layout="position"
         >
-          <motion.h2
-            className="text-xl font-bold text-center text-foreground"
-            // layoutId="title-text"
-            // layout="position"
-          >
+          <motion.h2 className="text-xl font-bold text-center text-foreground">
             {spreadData.title}
           </motion.h2>
         </motion.div>
@@ -48,10 +45,13 @@ export default function Page({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed top-8 left-8 z-10 text-foreground text-sm bg-background"
+          className="fixed top-8 left-8 z-10 text-sm"
         >
-          <Link href="/" className="mix-blend-difference">
-            Back to home
+          <Link
+            href="/"
+            className="mix-blend-difference flex items-center space-x-1"
+          >
+            <ChevronLeft /> Back to home
           </Link>
         </motion.div>
       </motion.main>
