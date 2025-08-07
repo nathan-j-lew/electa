@@ -26,9 +26,6 @@ export default function Page({
         <motion.div
           className="fixed inset-x-0 h-svh -z-1"
           layout
-          // layoutRoot
-          // layoutScroll
-          // layoutId="testWrapper"
           layoutId="background"
           style={{
             backgroundColor: spreadData.hex,

@@ -18,7 +18,6 @@ export default function Home({
   const { scrollYProgress } = useScroll();
   const [currentItem, setCurrentItem] = useState(0);
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    // console.log("latest", latest);
     const index = Math.floor(latest * data.length);
     if (latest < 0.01) return;
     setCurrentItem(index >= data.length ? data.length - 1 : index);
@@ -40,11 +39,7 @@ export default function Home({
               layoutId="title"
               layout="position"
             >
-              <motion.h2
-                className="text-xl font-bold text-center text-foreground"
-                // layoutId="title-text"
-                // layout="position"
-              >
+              <motion.h2 className="text-xl font-bold text-center text-foreground">
                 {data[currentItem].title}
               </motion.h2>
             </motion.div>
