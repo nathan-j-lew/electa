@@ -5,7 +5,10 @@ import { useState, useEffect } from "react";
 
 export default function App({ Component, pageProps }: AppProps) {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [clicks, setClicks] = useState<{ x: number; y: number }[]>([]);
+  const [clicked, setClicked] = useState<{
+    x: number | null;
+    y: number | null;
+  }>({ x: null, y: null });
 
   useEffect(() => {
     const updateMousePosition = (e: MouseEvent) => {
@@ -19,10 +22,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
-      setClicks((prevClicks) => [
-        ...prevClicks,
-        { x: e.clientX, y: e.clientY },
-      ]);
+      setClicked({ x: e.clientX, y: e.clientY });
     };
     window.addEventListener("mousedown", handleClick);
     return () => {
@@ -30,8 +30,18 @@ export default function App({ Component, pageProps }: AppProps) {
     };
   }, []);
 
+  useEffect(() => {
+    const handleClick = (e: MouseEvent) => {
+      setClicked({ x: null, y: null });
+    };
+    window.addEventListener("mouseup", handleClick);
+    return () => {
+      window.removeEventListener("mouseup", handleClick);
+    };
+  }, []);
+
   return (
-    <MousePositionContext value={{ position: mousePosition, clicks: clicks }}>
+    <MousePositionContext value={{ position: mousePosition, clicked: clicked }}>
       <Component {...pageProps} />
     </MousePositionContext>
   );
